@@ -1,13 +1,37 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
-import Home from 'pages/home';
-import Settings from 'pages/settings';
-import Display from 'pages/display';
-import NotFound from 'pages/exception'
+import Loadable from 'react-loadable';
 
 // 使用 CSS Module 的方式引入 App.less
 import styles from './App.less';
+
+// Loading 提示
+const loadingComponent = () => <span>Loading</span>;
+
+
+// Home 组件
+const Home = Loadable({
+    loader: () => import('pages/home'),
+    loading: loadingComponent
+})
+
+// Settings 组件
+const Settings = Loadable({
+    loader: () => import('pages/settings'),
+    loading: loadingComponent
+})
+
+// Display 组件
+const Display = Loadable({
+    loader: () => import('pages/display'),
+    loading: loadingComponent
+})
+
+// NotFound 组件
+const NotFound = Loadable({
+    loader: () => import('pages/exception'),
+    loading: loadingComponent
+})
 
 export default (props) => {
     return (

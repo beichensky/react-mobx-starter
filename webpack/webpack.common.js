@@ -11,7 +11,10 @@ const appIndex = path.resolve(appSrc, 'index.js');
 const appHtml = path.resolve(appPublic, 'index.html');
 
 module.exports = {
-    entry: appIndex,
+    entry: {
+        main: [appIndex],
+        common: ['react', 'react-dom', 'react-router-dom', 'mobx']
+    },
     output: {
         filename: 'public/js/[name].[hash:8].js',
         path: appDist,

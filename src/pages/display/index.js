@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+import ProtoTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { Button, Table } from 'antd';
 import DisplayModel from './model';
@@ -29,10 +30,16 @@ const columns = [
         title: '星级',
         dataIndex: 'string'
     }
-]
+];
 
 @observer
-export default class Display extends Component {
+class Display extends Component {
+
+    static propTypes = {
+        history: ProtoTypes.shape({
+            goBack: ProtoTypes.func.isRequired
+        }).isRequired
+    }
 
     componentDidMount() {
         model.getListData();
@@ -61,6 +68,8 @@ export default class Display extends Component {
                     rowKey={ ({ address, number }) => address + number }
                 />
             </div>
-        )
+        );
     }
 }
+
+export default Display;

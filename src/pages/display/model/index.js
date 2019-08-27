@@ -43,8 +43,8 @@ export default class DisplayModel {
         runInAction(() => {
             this.loading = false;
             if(response && response.success) {
-                this.listData = response.data.projects
+                this.listData = response.data.projects;
             }
-        })
+        });
     }
 }

@@ -12,7 +12,7 @@ import { Card } from 'antd';
 
 @inject('globalModel')
 @observer
-export default class Seetings extends Component {
+class Seetings extends Component {
 
     static propTypes = {
         globalModel: PropTypes.shape({
@@ -29,7 +29,7 @@ export default class Seetings extends Component {
         // 定义 val，让 input 成为受控组件
         this.state = {
             val: ''
-        }
+        };
     }
 
     /**
@@ -38,7 +38,7 @@ export default class Seetings extends Component {
     handleValueChange = (e) => {
         this.setState({
             val: e.target.value
-        })
+        });
     }
 
     /**
@@ -51,17 +51,15 @@ export default class Seetings extends Component {
             changeUserName(val);
             this.setState({
                 val: ''
-            })
+            });
         }
     }
 
     render () {
         const { username } = this.props.globalModel;
         const { val } = this.state;
-        const title = "Settings 界面：展示以及修改全局 Model 中的属性"
-        const actions = [
-            <Button onClick={ () => this.props.history.goBack() }>返回</Button>
-        ]
+        const title = "Settings 界面：展示以及修改全局 Model 中的属性";
+        const actions = [ <Button key="0" onClick={ () => this.props.history.goBack() }>返回</Button> ];
         return (
             <Card title={ title } actions={ actions } style={{ width: 600 }}>
                 <div style={{ marginBottom: 30 }}>
@@ -72,6 +70,8 @@ export default class Seetings extends Component {
                     <span style={{ marginLeft: 20, background: 'pink' }}>{ username }</span>
                 </span>
             </Card>
-        )
+        );
     }
 }
+
+export default Seetings;

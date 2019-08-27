@@ -13,27 +13,27 @@ const loadingComponent = () => <span>Loading</span>;
 const Home = Loadable({
     loader: () => import('pages/home'),
     loading: loadingComponent
-})
+});
 
 // Settings 组件
 const Settings = Loadable({
     loader: () => import('pages/settings'),
     loading: loadingComponent
-})
+});
 
 // Display 组件
 const Display = Loadable({
     loader: () => import('pages/display'),
     loading: loadingComponent
-})
+});
 
 // NotFound 组件
 const NotFound = Loadable({
     loader: () => import('pages/exception'),
     loading: loadingComponent
-})
+});
 
-export default (props) => {
+export default () => {
     return (
         <div className={ styles.app }>
             <Switch>
@@ -43,5 +43,5 @@ export default (props) => {
                 <Route component={ NotFound } />
             </Switch>
         </div>
-    )
-}
+    );
+};

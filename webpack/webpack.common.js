@@ -34,9 +34,10 @@ module.exports = {
             // 解析 js
             {
                 test: /\.(js|jsx)$/,
-                loader: 'babel-loader?cacheDirectory',
+                // loader: 'babel-loader?cacheDirectory',
                 include: [ appSrc ],
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                use: ['babel-loader?cacheDirectory', 'eslint-loader']
             },
             // 解析样式
             {

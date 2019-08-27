@@ -23,7 +23,7 @@ export const get = (url, data) => {
             method: 'GET',
         })
         .then(response => response.json());
-}
+};
 
 /**
  * 进行 Post 方式进行网络请求
@@ -40,6 +40,6 @@ export const post = (url, data) => {
         },
         method: 'POST',
     })
-    .then(response => response.json()) // parses response to JSON
-}
+    .then(response => response.json()); // parses response to JSON
+};
 

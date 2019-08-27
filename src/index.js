@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { Provider } from 'mobx-react'
+import { Provider } from 'mobx-react';
 import { LocaleProvider } from 'antd';
 import { HashRouter } from 'react-router-dom';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';

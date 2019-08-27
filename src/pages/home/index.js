@@ -5,23 +5,30 @@
  */
 
 import React from 'react';
+import ProtoTypes from 'prop-types';
 import { Button } from 'antd';
 
-export default ({history}) => {
+Home.propTypes = {
+    history: ProtoTypes.shape({
+        push: ProtoTypes.func.isRequired
+    }).isRequired
+};
+
+const Home = ({history}) => {
 
     /**
      * 跳转到 Settings 界面
      */
     const toSettingPage = () => {
-        history.push('/settings')
-    }
+        history.push('/settings');
+    };
 
     /**
      * 跳转到 Display 界面
      */
     const toDisplayPage = () => {
-        history.push('/display')
-    }
+        history.push('/display');
+    };
 
     return  (
         <div>
@@ -29,6 +36,7 @@ export default ({history}) => {
             <Button style={{ marginLeft: 50 }} onClick={ toSettingPage }>Seeting 界面</Button>
             <Button style={{ marginLeft: 30 }} type="primary" onClick={ toDisplayPage }>Display 界面</Button>
         </div>
-    )
-}
+    );
+};
 
+export default Home;

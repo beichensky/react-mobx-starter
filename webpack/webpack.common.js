@@ -1,14 +1,10 @@
-const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
+const paths = require('../config/paths');
 
-const appSrc = path.resolve(__dirname, '../src');
-const appDist = path.resolve(__dirname, '../dist');
-const appPublic = path.resolve(__dirname, '../public');
-const appIndex = path.resolve(appSrc, 'index.js');
-const appHtml = path.resolve(appPublic, 'index.html');
+const { appSrc, appDist, appIndex, appHtml, appUtils, appPages, appComponents } = paths;
 
 module.exports = {
     entry: {
@@ -137,11 +133,11 @@ module.exports = {
         // 设置别名
         alias: {
             src: appSrc,
-            utils: path.resolve(__dirname, '../src/utils'),
-            pages: path.resolve(__dirname, '../src/pages'),
-            components: path.resolve(__dirname, '../src/components')
+            utils: appUtils,
+            pages: appPages,
+            components: appComponents
         },
         // 设置模块查找范围
-        modules: [path.resolve(__dirname, '../node_modules')]
+        modules: ['node_modules', paths.appNodeModules]
     }
-}
+};

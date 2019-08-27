@@ -8,11 +8,7 @@ import React from 'react';
 import ProtoTypes from 'prop-types';
 import { Button } from "antd";
 
-Expection.propTypes = {
-    history: ProtoTypes.shape({
-        replace: ProtoTypes.func.isRequired
-    }).isRequired
-};
+
 const Expection = ({ history }) => {
     return (
         <div>
@@ -20,6 +16,12 @@ const Expection = ({ history }) => {
             <Button type="primary" onClick={ () => history.replace('/') }>返回首页</Button>
         </div>
     );
+};
+
+Expection.propTypes = {
+    history: ProtoTypes.shape({
+        replace: ProtoTypes.func.isRequired
+    }).isRequired
 };
 
 export default Expection;

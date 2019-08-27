@@ -1,10 +1,11 @@
-const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common');
+const paths = require('../config/paths');
+const proxy = require('../config/proxy');
 
-const appPublic = path.resolve(__dirname, '../public');
+const { appPublic } = paths;
 
 const config = merge(common, {
     mode: 'development',
@@ -25,15 +26,7 @@ const config = merge(common, {
         // 展示的统计信息
         stats: 'errors-only',
         // 配置代理
-        proxy: {
-            '/api': {
-                changeOrigin: true,
-                target: 'https://easy-mock.com/mock/5c2dc9665cfaa5209116fa40/example',
-                pathRewrite: {
-                    '^/api/': '/'
-                }
-            }
-        }
+        proxy
     },
     plugins: [
         // 热加载插件

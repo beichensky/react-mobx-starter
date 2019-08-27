@@ -8,11 +8,6 @@ import React from 'react';
 import ProtoTypes from 'prop-types';
 import { Button } from 'antd';
 
-Home.propTypes = {
-    history: ProtoTypes.shape({
-        push: ProtoTypes.func.isRequired
-    }).isRequired
-};
 
 const Home = ({history}) => {
 
@@ -37,6 +32,12 @@ const Home = ({history}) => {
             <Button style={{ marginLeft: 30 }} type="primary" onClick={ toDisplayPage }>Display 界面</Button>
         </div>
     );
+};
+
+Home.propTypes = {
+    history: ProtoTypes.shape({
+        push: ProtoTypes.func.isRequired
+    }).isRequired
 };
 
 export default Home;

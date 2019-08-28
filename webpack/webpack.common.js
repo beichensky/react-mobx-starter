@@ -1,7 +1,8 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const chalk = require('chalk');
 const { 
     appSrc,
     appDist,
@@ -30,8 +31,12 @@ module.exports = {
             template: appHtml,
             filename: 'index.html'
         }),
-        // 在命令行展示更清晰地提示信息
-        new FriendlyErrorsWebpackPlugin()
+        // 打包进度
+        new ProgressBarPlugin({
+            complete: "█",
+            format: chalk.green('Webpack ') + '[ '+ chalk.green(':bar') + ' ] ' + ':msg: ' + chalk.bold('(:percent)'),
+            clear: true
+        }),
     ],
     module: {
         rules: [

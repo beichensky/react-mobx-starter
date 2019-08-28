@@ -14,5 +14,6 @@ module.exports = {
     appNodeModules: resolveApp('node_modules'),
     appUtils: resolveApp('src/utils'),
     appPages: resolveApp('src/pages'),
-    appComponents: resolveApp('src/components')
+    appComponents: resolveApp('src/components'),
+    appPackageJson: resolveApp('package.json')
 };

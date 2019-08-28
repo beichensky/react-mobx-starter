@@ -2,9 +2,17 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
-const paths = require('../config/paths');
+const { 
+    appSrc,
+    appDist,
+    appIndex,
+    appHtml,
+    appUtils,
+    appPages,
+    appComponents,
+    appNodeModules,
+} = require('../config/paths');
 
-const { appSrc, appDist, appIndex, appHtml, appUtils, appPages, appComponents } = paths;
 
 module.exports = {
     entry: {
@@ -138,6 +146,6 @@ module.exports = {
             components: appComponents
         },
         // 设置模块查找范围
-        modules: ['node_modules', paths.appNodeModules]
+        modules: ['node_modules', appNodeModules]
     }
 };

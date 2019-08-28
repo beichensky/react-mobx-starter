@@ -1,11 +1,30 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const os = require('os');
 const common = require('./webpack.common');
-const paths = require('../config/paths');
+const { appPublic, appPackageJson } = require('../config/paths');
 const proxy = require('../config/proxy');
+const { 
+    protocol,
+    host,
+    port
+} = require('../config/devServer');
 
-const { appPublic } = paths;
+
+// 在开发环境中获取局域网中的本机iP地址
+const interfaces = os.networkInterfaces();
+let IPAddress = '';
+for(var devName in interfaces){
+  var iface = interfaces[devName];
+  for(var i=0;i<iface.length;i++){
+        var alias = iface[i];
+        if(alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal){  
+            IPAddress = alias.address;
+        }
+    }
+}
 
 const config = merge(common, {
     mode: 'development',
@@ -16,15 +35,18 @@ const config = merge(common, {
         // 热加载
         hot: true,
         // host 地址
-        host: 'localhost',
+        host,
         // 端口号
-        port: 8000,
+        port,
         historyApiFallback: true,
+        open: true,
         // 是否在浏览器蒙层展示错误信息
         overlay: true,
         inline: true,
         // 展示的统计信息
         stats: 'errors-only',
+        logLevel: 'silent',
+        quiet: true,
         // 配置代理
         proxy
     },
@@ -35,6 +57,15 @@ const config = merge(common, {
         new MiniCssExtractPlugin({
             filename: 'public/styles/[name].css',
             chunkFilename: 'public/styles/[name].chunk.css'
+        }),
+        new FriendlyErrorsWebpackPlugin({
+            compilationSuccessInfo: {
+                messages: [`You can now view ${require(appPackageJson).name} in the browser.\r\n`, 
+                    ` Local:            ${protocol}://${host}:${port}`,
+                    ` On Your Network:  ${protocol}://${IPAddress}:${port}`
+                ]
+            },
+            clearConsole: true
         })
     ]
 });

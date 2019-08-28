@@ -60,9 +60,13 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
+                            importLoaders: 2,
                             sourceMap: true,
-                            modules: true,
-                            localIdentName: '[local].[hash:8]'
+                            modules: {
+                                localIdentName: '[local].[hash:8]'
+                            },
+                            // 使用时 class 名会原样导出
+                            localsConvention: 'asIs'
                         }
                     },
                     {

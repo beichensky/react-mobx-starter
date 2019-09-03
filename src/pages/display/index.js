@@ -6,11 +6,11 @@
 
 import React, { useEffect } from 'react';
 import ProtoTypes from 'prop-types';
-import { useLocalStore, useObserver } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { Button, Table } from 'antd';
 import DisplayModel from './model';
 
-const store = new DisplayModel();
+const model = new DisplayModel();
 
 // Table 的 columns 值
 const columns = [
@@ -34,15 +34,13 @@ const columns = [
 
 const Display = ({history}) => {
 
-    const model = useLocalStore(() => store);
-
     useEffect(() => {
         model.getListData();
     }, []);
 
     const tableTitle = () => <span>展示 Mobx 异步操作获取数据的 Table</span>;
     const { changeCount, loading, getListData } = model;
-    return useObserver(() => (
+    return (
         <div>
             <h2>Display 界面：展示 Mobx 同步、异步修改数据</h2>
             <div style={{ marginTop: 20, marginBottom: 50 }}>
@@ -62,7 +60,7 @@ const Display = ({history}) => {
                 rowKey={ ({ address, number }) => address + number }
             />
         </div>
-    ));
+    );
 };
 
 Display.propTypes = {
@@ -71,4 +69,4 @@ Display.propTypes = {
     }).isRequired
 };
 
-export default Display;
+export default observer(Display);
